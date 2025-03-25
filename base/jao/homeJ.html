@@ -1,29 +1,71 @@
-<div class="container my-3">
-    <div class="row">
-        <!-- Menu lateral/offcanvas -->
-        <div class="col-md-3 col-lg-2 d-none d-md-block">
-            <div class="offcanvas offcanvas-start show mt-5" data-bs-scroll="true" data-bs-backdrop="false"
-                tabindex="-1" id="offcanvasJao" aria-labelledby="offcanvasJaoLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasJaoLabel">Menu</h5>
-                </div>
-                <div class="offcanvas-body">
-                    <p>Opções do menu aqui...</p>
-                </div>
-            </div>
+<div class="container">
+    <div class="row"><!-- Menu lateral/offcanvas -->
+        <div class="col-md-3 col-lg-1">
+            <div id="jaoContainer-menu"></div>
         </div>
 
         <!-- Conteúdo principal -->
-        <div class="col-12 col-md-9 col-lg-10">
-            <button class="btn btn-primary d-md-none my-3" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasJao">
-                ☰ Abrir Menu
-            </button>
-            <div class="card">
-                <div class="card-body">
-                    Conteúdo principal aqui.
+        <div class="col-12 col-md-9 col-lg-11 mt-5 pt-3">
+            <section class="dm" id="home">
+                <!-- Mensagem de Boas-vindas animada -->
+                <div class="container">
+                    <h1 class="animate__animated animate__fadeInUp animate__fast">👋 Bem-vindo de volta, João Pedro!
+                    </h1>
+                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Ele é o meu Deus, o meu refúgio, a
+                        minha fortaleza, e nele confiarei. Salmo 91:2</p>
+                    <hr>
                 </div>
-            </div>
+
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card">
+                            <h5 class="card-header">Horário da Sala</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">Ver o seu horário</h5>
+                                <p class="card-text">
+                                </p>
+                                <a href="#horario" onclick="mostrarDiv('jao_if_horario')" class="btn btn-outline-primary w-100">Acessar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col">
+                    <div class="card">
+                        <h5 class="card-header">Horário da Sala</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Ver o seu horário</h5>
+                            <p class="card-text">
+                            </p>
+                            <a href="#" class="btn btn-outline-primary w-100">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h5 class="card-header">Horário da Sala</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Ver o seu horário</h5>
+                            <p class="card-text">
+                            </p>
+                            <a href="#" class="btn btn-outline-primary w-100">Acessar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <h5 class="card-header">Horário da Sala</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Ver o seu horário</h5>
+                            <p class="card-text">
+                            </p>
+                            <a href="#" class="btn btn-outline-primary w-100">Acessar</a>
+                        </div>
+                    </div>
+                </div> -->
+                </div>
+            </section>
+            <section class="dm oculto" id="jao_if_horario">
+                <p>Horário</p>
+            </section>
         </div>
     </div>
 </div>
