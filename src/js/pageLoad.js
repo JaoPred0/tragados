@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'homeJ', container: 'jaoContainer-home' },
         { arquivo: 'perfilJ', container: 'jaoContainer-perfil' },
         { arquivo: 'menuJ', container: 'jaoContainer-menu' },
+        { arquivo: 'horarioJ', container: 'jaoContainer-horario' },
     ];
 
     const elementosFelipe = [

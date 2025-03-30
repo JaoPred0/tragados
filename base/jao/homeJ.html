@@ -1,71 +1,24 @@
-<div class="container">
-    <div class="row"><!-- Menu lateral/offcanvas -->
-        <div class="col-md-3 col-lg-1">
-            <div id="jaoContainer-menu"></div>
-        </div>
+<!-- Menu lateral -->
+<div id="jaoContainer-menu"></div>
 
-        <!-- Conteúdo principal -->
-        <div class="col-12 col-md-9 col-lg-11 mt-5 pt-3">
-            <section class="dm" id="home">
-                <!-- Mensagem de Boas-vindas animada -->
-                <div class="container">
-                    <h1 class="animate__animated animate__fadeInUp animate__fast">👋 Bem-vindo de volta, João Pedro!
-                    </h1>
-                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Ele é o meu Deus, o meu refúgio, a
-                        minha fortaleza, e nele confiarei. Salmo 91:2</p>
-                    <hr>
-                </div>
+<!-- Botão de menu -->
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasJao"
+    aria-controls="offcanvasJao">
+</button>
 
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <h5 class="card-header">Horário da Sala</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">Ver o seu horário</h5>
-                                <p class="card-text">
-                                </p>
-                                <a href="#horario" onclick="mostrarDiv('jao_if_horario')" class="btn btn-outline-primary w-100">Acessar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col">
-                    <div class="card">
-                        <h5 class="card-header">Horário da Sala</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Ver o seu horário</h5>
-                            <p class="card-text">
-                            </p>
-                            <a href="#" class="btn btn-outline-primary w-100">Acessar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h5 class="card-header">Horário da Sala</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Ver o seu horário</h5>
-                            <p class="card-text">
-                            </p>
-                            <a href="#" class="btn btn-outline-primary w-100">Acessar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <h5 class="card-header">Horário da Sala</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Ver o seu horário</h5>
-                            <p class="card-text">
-                            </p>
-                            <a href="#" class="btn btn-outline-primary w-100">Acessar</a>
-                        </div>
-                    </div>
-                </div> -->
-                </div>
-            </section>
-            <section class="dm oculto" id="jao_if_horario">
-                <p>Horário</p>
-            </section>
+<!-- Conteúdo principal -->
+<div class="container-fluid mt-5">
+    <section id="home" class="dm-J">
+        <h2 class="animate__animated animate__fadeInUp">👋 Bem-vindo de volta, João Pedro!</h2>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <div id="mensagem"></div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="dm-J oculto" id="jao_if_horario">
+        <div id="jaoContainer-horario"></div>
+    </section>
 </div>
