@@ -81,6 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'navbarF', container: 'felipeContainer-navbar' },
         { arquivo: 'homeF', container: 'felipeContainer-home' },
         { arquivo: 'perfilF', container: 'felipeContainer-perfil' },
+        { arquivo: 'menuF', container: 'felipeContainer-menu' },
+        { arquivo: 'horarioF', container: 'felipeContainer-horario' },
+
 
     ];
 
@@ -88,6 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'navbarW', container: 'wendyContainer-navbar' },
         { arquivo: 'homeW', container: 'wendyContainer-home' },
         { arquivo: 'perfilW', container: 'wendyContainer-perfil' },
+        { arquivo: 'menuW', container: 'wendyContainer-menu' },
+        { arquivo: 'horarioW', container: 'wendyContainer-horario' },
+
 
     ];
     elementos.forEach(item => carregarConteudo(item.arquivo, item.container));

@@ -1,5 +1,29 @@
 <!-- Mensagem de Boas-vindas animada -->
-<div class="container text-center mt-5 pt-5">
-    <h1 class="animate__animated animate__fadeInUp animate__fast">👋 Bem-vindo de volta, Felipe Leite!</h1>
-    <p class="animate__animated animate__fadeInUp animate__delay-1s">Área home, mais pela frente terá mais coisas.</p>
+<!-- Menu lateral -->
+<div id="felipeContainer-menu"></div>
+
+<!-- Botão de menu -->
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasfelipe"
+    aria-controls="offcanvasJao">
+</button>
+
+<!-- Conteúdo principal -->
+<div class="container-fluid mt-5">
+    <section id="home" class="dm-F">
+        <h2 class="animate__animated animate__fadeInUp">👋 Bem-vindo de volta, Felipe Leite!</h2>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <div id="mensagem"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dm-F oculto" id="felipe_if_horario">
+        <div id="felipeContainer-horario"></div>
+    </section>
+
+    <section class="dm-F oculto" id="felipe_home_perfil">
+        <div id="felipeContainer-perfil"></div>
+    </section>
 </div>
