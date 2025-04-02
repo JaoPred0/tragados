@@ -75,6 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'perfilJ', container: 'jaoContainer-perfil' },
         { arquivo: 'menuJ', container: 'jaoContainer-menu' },
         { arquivo: 'horarioJ', container: 'jaoContainer-horario' },
+        { arquivo: 'horarioJ', container: 'jaoContainer-horario' },
+        { arquivo: 'calendarioJ', container: 'jaoContainer-calendario' },
     ];
 
     const elementosFelipe = [
@@ -83,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'perfilF', container: 'felipeContainer-perfil' },
         { arquivo: 'menuF', container: 'felipeContainer-menu' },
         { arquivo: 'horarioF', container: 'felipeContainer-horario' },
+        { arquivo: 'calendarioF', container: 'felipeContainer-calendario' },
 
 
     ];
@@ -93,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'perfilW', container: 'wendyContainer-perfil' },
         { arquivo: 'menuW', container: 'wendyContainer-menu' },
         { arquivo: 'horarioW', container: 'wendyContainer-horario' },
+        { arquivo: 'calendarioW', container: 'wendyContainer-calendario' },
 
 
     ];

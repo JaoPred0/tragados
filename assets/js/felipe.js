@@ -9,14 +9,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const aulasMatutinas = [
-            { disciplina: "Matemática 3", sala: "Sala 03", horario: "10:20 - 11:05", dia: "terça-feira" },
-            { disciplina: "Matemática 3", sala: "Sala 03", horario: "11:05 - 11:50", dia: "terça-feira" },
-            { disciplina: "Química 2", sala: "Sala 03", horario: "09:35 - 10:20", dia: "quinta-feira" },
-            { disciplina: "Química 2", sala: "Sala 03", horario: "10:20 - 11:05", dia: "quinta-feira" },
-            { disciplina: "Matemática 3", sala: "Sala 03", horario: "07:00 - 07:45", dia: "sexta-feira" },
-            { disciplina: "Biologia 1", sala: "Sala 03", horario: "09:35 - 10:20", dia: "sexta-feira" },
-            { disciplina: "Biologia 1", sala: "Sala 03", horario: "10:20 - 11:05", dia: "sexta-feira" },
-            { disciplina: "Química 2", sala: "Sala 03", horario: "11:50 - 12:35", dia: "sexta-feira" }
+            { disciplina: "Matemática 3", sala: "Sala 05", horario: "07:00 - 07:45", dia: "Terça-feira" },
+            { disciplina: "Matemática 3", sala: "Sala 05", horario: "10:20 - 11:05", dia: "Sexta-feira" },
+            { disciplina: "Matemática 3", sala: "Sala 05", horario: "11:05 - 11:50", dia: "Sexta-feira" },
         ];
 
         const hoje = new Date();
@@ -47,4 +42,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
     verificarAulas();
 });
-

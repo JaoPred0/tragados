@@ -9,3 +9,15 @@
         -webkit-overflow-scrolling: touch;
     }
 }
+
+.calendar-ifms {
+    background-color: green !important;
+}
+
+.calendar-feriado {
+    background-color: rgb(140, 140, 140) !important;
+}
+.hoje {
+    background-color: rgb(255, 255, 0) !important;
+    color: black !important;
+}
