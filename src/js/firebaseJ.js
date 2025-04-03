@@ -54,7 +54,7 @@ saveButton.addEventListener("click", async () => {
 
     try {
         toggleLoading(true);
-        await addDoc(collection(db, "notes"), { user: "Jao", content: noteContent });
+        await addDoc(collection(db, "notes"), { user: "Wendy", content: noteContent });
         editor.innerHTML = "";
         await loadNotes(); // 🔹 Agora espera carregar antes de continuar
     } catch (error) {
@@ -113,11 +113,12 @@ async function loadNotes() {
 
 // 🔹 Abrir modal de edição
 function openEditModal(id, content) {
-    closeAllModals();
+    forceCloseModals(); // Fecha qualquer modal preso antes
     currentEditId = id;
     editContent.value = content;
     editModal.show();
 }
+
 
 // 🔹 Salvar edição
 saveEditButton.addEventListener("click", async () => {
@@ -141,10 +142,11 @@ saveEditButton.addEventListener("click", async () => {
 
 // 🔹 Abrir modal de exclusão
 function openDeleteModal(id) {
-    closeAllModals();
+    forceCloseModals(); // Fecha qualquer modal preso antes
     currentDeleteId = id;
     deleteModal.show();
 }
+
 
 // 🔹 Confirmar exclusão
 confirmDeleteButton.addEventListener("click", async () => {
@@ -172,10 +174,32 @@ function closeAllModals() {
     document.body.classList.remove("modal-open");
 }
 
+
 // 🔹 Fechar modal ao clicar em cancelar
-document.querySelectorAll(".cancel-btn").forEach((btn) => {
-    btn.addEventListener("click", () => closeAllModals());
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.remove("modal-open");
+    document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
 });
+
+
+function forceCloseModals() {
+    document.querySelectorAll(".modal.show").forEach((modal) => {
+        const modalInstance = bootstrap.Modal.getInstance(modal);
+        if (modalInstance) modalInstance.hide();
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
+        document.body.classList.remove("modal-open");
+    }, 100); // Pequeno delay para garantir remoção
+}
+
+document.addEventListener("click", (event) => {
+    if (document.body.classList.contains("modal-open")) {
+        forceCloseModals();
+    }
+});
+
 
 // 🔹 Carregar notas ao iniciar
 document.addEventListener("DOMContentLoaded", async () => {

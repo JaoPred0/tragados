@@ -30,7 +30,7 @@
     <section class="dm-W oculto" id="wendy_home_blocoNotas">
         <div class="container">
             <!-- Modal de Carregamento -->
-            <div id="loadingModal" class="modal fade" tabindex="-1">
+            <div id="loadingModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content text-center p-4 animate__animated animate__fadeIn">
                         <div class="d-flex justify-content-center">
@@ -44,7 +44,7 @@
             </div>
 
             <!-- Modal de Edição -->
-            <div id="editModal" class="modal fade" tabindex="-1">
+            <div id="editModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -64,19 +64,19 @@
             </div>
 
             <!-- Modal de Exclusão -->
-            <div id="deleteModal" class="modal fade" tabindex="-1">
+            <div id="deleteModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Confirmar Exclusão</h5>
-                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')"></button>
+                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <p>Tem certeza que deseja excluir esta nota?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary cancel-btn"
-                                onclick="closeAllModals()">Cancelar</button>
+                                onclick="closeAllModals()" data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
                         </div>
                     </div>

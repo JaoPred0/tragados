@@ -1,12 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, query, where } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-// 🔹 Configuração correta do Firebase
+// 🔹 Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDEjOyQBdddRZJEF-gSuS2IkAUnd3225IE",
     authDomain: "tragados-57793.firebaseapp.com",
     projectId: "tragados-57793",
-    storageBucket: "tragados-57793.appspot.com", // 🔹 Corrigido `.app` para `.com`
+    storageBucket: "tragados-57793.appspot.com",
     messagingSenderId: "74076574549",
     appId: "1:74076574549:web:cce79ebb8f995f5b5c15dc",
     measurementId: "G-WQ24B0S56W"
@@ -34,14 +34,34 @@ let currentDeleteId = "";
 // 🔹 Função para mostrar/ocultar modal de carregamento
 function toggleLoading(show) {
     const modal = document.getElementById("loadingModal");
+
     if (show) {
         closeAllModals();
         modal.classList.add("show");
         modal.style.display = "block";
+        document.body.classList.add("modal-open");
     } else {
         modal.classList.remove("show");
         modal.style.display = "none";
+        document.body.classList.remove("modal-open");
+        removeBackdrop();
     }
+}
+
+// 🔹 Função para remover backdrop preso
+function removeBackdrop() {
+    document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
+}
+
+// 🔹 Fechar todos os modais e remover backdrop
+function closeAllModals() {
+    document.querySelectorAll(".modal.show").forEach((modal) => {
+        const modalInstance = bootstrap.Modal.getInstance(modal);
+        if (modalInstance) modalInstance.hide();
+    });
+
+    removeBackdrop();
+    document.body.classList.remove("modal-open");
 }
 
 // 🔹 Salvar Nota
@@ -56,7 +76,7 @@ saveButton.addEventListener("click", async () => {
         toggleLoading(true);
         await addDoc(collection(db, "notes"), { user: "Felipe", content: noteContent });
         editor.innerHTML = "";
-        await loadNotes(); // 🔹 Agora espera carregar antes de continuar
+        await loadNotes();
     } catch (error) {
         console.error("Erro ao salvar nota:", error);
     } finally {
@@ -65,13 +85,10 @@ saveButton.addEventListener("click", async () => {
 });
 
 // 🔹 Carregar Notas
-import { query, where } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-
 async function loadNotes() {
     try {
         toggleLoading(true);
 
-        // 🔹 Criando uma consulta filtrada para buscar apenas as notas do usuário "Felipe"
         const notesQuery = query(collection(db, "notes"), where("user", "==", "Felipe"));
         const querySnapshot = await getDocs(notesQuery);
 
@@ -94,7 +111,7 @@ async function loadNotes() {
             notesTableBody.appendChild(tr);
         });
 
-        // 🔹 Adicionando eventos para os botões de edição e exclusão
+        // 🔹 Eventos para editar e excluir
         document.querySelectorAll(".edit-btn").forEach((btn) => {
             btn.addEventListener("click", () => openEditModal(btn.dataset.id, btn.dataset.content));
         });
@@ -109,7 +126,6 @@ async function loadNotes() {
         toggleLoading(false);
     }
 }
-
 
 // 🔹 Abrir modal de edição
 function openEditModal(id, content) {
@@ -130,7 +146,7 @@ saveEditButton.addEventListener("click", async () => {
         toggleLoading(true);
         const noteRef = doc(db, "notes", currentEditId);
         await updateDoc(noteRef, { content: editContent.value });
-        await loadNotes(); // 🔹 Aguarda o carregamento antes de fechar
+        await loadNotes();
         editModal.hide();
     } catch (error) {
         console.error("Erro ao editar nota:", error);
@@ -160,21 +176,19 @@ confirmDeleteButton.addEventListener("click", async () => {
     }
 });
 
-// 🔹 Fechar todos os modais abertos
-function closeAllModals() {
-    document.querySelectorAll(".modal.show").forEach((modal) => {
-        const modalInstance = bootstrap.Modal.getInstance(modal);
-        if (modalInstance) modalInstance.hide();
+// 🔹 Fechar modais ao clicar em "Cancelar"
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".cancel-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            closeAllModals();
+            removeBackdrop();
+        });
     });
+});
 
-    // 🔹 Remover backdrop caso fique preso
-    document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
-    document.body.classList.remove("modal-open");
-}
-
-// 🔹 Fechar modal ao clicar em cancelar
-document.querySelectorAll(".cancel-btn").forEach((btn) => {
-    btn.addEventListener("click", () => closeAllModals());
+// 🔹 Corrige backdrop escuro preso ao fechar modal
+document.addEventListener("hidden.bs.modal", () => {
+    removeBackdrop();
 });
 
 // 🔹 Carregar notas ao iniciar
