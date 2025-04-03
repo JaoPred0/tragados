@@ -29,3 +29,7 @@ setTimeout(() => {
         }
     });
 }, 500);
+
+function formatarTexto(comando) {
+    document.execCommand(comando, false, null);
+}
