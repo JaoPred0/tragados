@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const caminhoJao = `base/jao/${arquivo}.html`;
         const caminhoWendy = `base/wendy/${arquivo}.html`;
         const caminhoFelipe = `base/felipe/${arquivo}.html`;
+        const caminhoTragados = `base/tragados/${arquivo}.html`;
         fetch(caminho)
             .then(response => {
                 if (!response.ok) throw new Error(`Erro HTTP! Status: ${response.status}`);
@@ -60,6 +61,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             .catch(error => console.error(`Erro ao carregar ${caminhoFelipe}:`, error));
+        fetch(caminhoTragados)
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro HTTP! Status: ${response.status}`);
+                return response.text();
+            })
+            .then(html => {
+                const elemento = document.getElementById(container);
+                if (elemento) {
+                    elemento.innerHTML = html;
+                } else {
+                    console.warn(`Elemento com ID "${container}" não encontrado.`);
+                }
+            })
+            .catch(error => console.error(`Erro ao carregar ${caminhoTragados}:`, error));
     }
 
     const elementos = [
@@ -98,11 +113,17 @@ document.addEventListener("DOMContentLoaded", () => {
         { arquivo: 'menuW', container: 'wendyContainer-menu' },
         { arquivo: 'horarioW', container: 'wendyContainer-horario' },
         { arquivo: 'calendarioW', container: 'wendyContainer-calendario' },
+    ];
 
+    const elementosTragados = [
+        { arquivo: 'navbarT', container: 'tragadosContainer-navbar' },
+        { arquivo: 'menuT', container: 'tragadosContainer-menu' },
 
     ];
+
     elementos.forEach(item => carregarConteudo(item.arquivo, item.container));
     elementosJao.forEach(item => carregarConteudo(item.arquivo, item.container));
     elementosWendy.forEach(item => carregarConteudo(item.arquivo, item.container));
     elementosFelipe.forEach(item => carregarConteudo(item.arquivo, item.container));
+    elementosTragados.forEach(item => carregarConteudo(item.arquivo, item.container));
 });
