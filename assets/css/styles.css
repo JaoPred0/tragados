@@ -36,14 +36,28 @@ textarea {
     min-height: 200px;
     resize: none;
 }
+
 .carousel-inner img {
     width: 100%;
-    height: 450px; /* Ajuste conforme necessário */
-    object-fit: contain; /* Evita cortes na imagem */
+    height: 450px;
+    /* Ajuste conforme necessário */
+    object-fit: contain;
+    /* Evita cortes na imagem */
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    filter: invert(100%); /* Deixa os ícones brancos para melhor visibilidade */
+    filter: invert(100%);
+    /* Deixa os ícones brancos para melhor visibilidade */
 }
 
+.card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: none !important;
+    display: block !important;
+
+}
+.container {
+    overflow: visible !important;
+}
