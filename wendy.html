@@ -20,11 +20,68 @@
 
 </head>
 
-<body>
+<body class="container-fluid">
     <div id="wendyContainer-navbar"></div>
-    <div class="navMobile" id="wendyContainer-navbarMobile"></div>
-    <div class="dm" id="wendyContainer-home"></div>
+    <div id="wendyContainer-menu"></div>
+
+    <!-- Home -->
+    <section id="home" class="dm-W mt-3">
+        <h2 class="animate__animated animate__fadeInUp">Bem-vindo de volta, Emili Oliveira!</h2>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <div id="mensagem"></div>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <div class="card-body">
+                <h6 class="fw-bold text-secondary">Feriados:</h6>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge bg-secondary p-2">18</span> Paixão de Cristo
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge bg-secondary p-2">21</span> Tiradentes
+                    </li>
+                </ul>
+
+                <h6 class="fw-bold text-success">IFMS:</h6>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge bg-success p-2">26</span> Ref. Quinta-feira
+                    </li>
+                </ul>
+                <h6 class="fw-bold text-primary">Provas:</h6>
+                <ul class="list-group mb-3" id="lista-provas">
+                    <!-- provas aparecerão aqui -->
+                </ul>
+            </div>
+        </div>
+    </section>
     <div class="dm oculto" id="wendyContainer-perfil"></div>
+
+    <!-- Horario -->
+    <section class="dm-W oculto" id="wendy_if_horario">
+        <div id="wendyContainer-horario"></div>
+    </section>
+
+    <!-- Perfil -->
+    <section class="dm-W oculto" id="wendy_home_perfil">
+        <!-- Mensagem de Boas-vindas -->
+        <div class="container text-center mt-5 pt-5">
+            <h1 class="animate__animated animate__fadeInUp animate__fast">Veja seu perfil abaixo</h1>
+
+            <!-- Card do Perfil -->
+            <div class="card mt-4 shadow-lg animate__animated animate__zoomIn">
+                <div class="card-body text-center">
+                    <img src="assets/img/florzinha.png" alt="Foto de Perfil"
+                        class="rounded-circle mb-3 border border-primary p-1">
+                    <h3 class="fw-bold">Emili</h3>
+                    <p class="text-muted">Data de Nascimento: xx/xx/xxxx</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Bloco de notas bd -->
     <section class="dm-W oculto" id="wendy_home_blocoNotas">
@@ -49,14 +106,14 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar Nota</h5>
-                            <button type="button" class="btn-close" onclick="closeModal('editModal')"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <textarea id="editContent" class="form-control"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary cancel-btn"
-                                onclick="closeAllModals()">Cancelar</button>
+                                onclick="closeAllModals()" data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="saveEdit">Salvar</button>
                         </div>
                     </div>

@@ -1,12 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-// 🔹 Configuração correta do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDEjOyQBdddRZJEF-gSuS2IkAUnd3225IE",
     authDomain: "tragados-57793.firebaseapp.com",
     projectId: "tragados-57793",
-    storageBucket: "tragados-57793.appspot.com", // 🔹 Corrigido `.app` para `.com`
+    storageBucket: "tragados-57793.appspot.com",
     messagingSenderId: "74076574549",
     appId: "1:74076574549:web:cce79ebb8f995f5b5c15dc",
     measurementId: "G-WQ24B0S56W"
@@ -15,7 +15,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+console.log("Firebase carregado com sucesso!");
+
 const user = "Jao";
+const userDocRef = doc(db, "users", user);
 
 // 🔹 Elementos do DOM
 const saveButton = document.getElementById("saveNote");
@@ -280,9 +283,9 @@ document.addEventListener("DOMContentLoaded", () => {
     async function marcarDiasProva() {
         const listaProvas = document.getElementById("lista-provas");
         listaProvas.innerHTML = ""; // limpa a lista antes de preencher
-    
+
         const querySnapshot = await getDocs(collection(db, "provas"));
-    
+
         querySnapshot.forEach((docSnap) => {
             const data = docSnap.data();
             if (data.user === user) {
@@ -291,17 +294,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // mês começa do 0
                 const ano = dataObj.getFullYear();
                 const dataFormatada = `${ano}-${mes}-${dia}`;
-    
+
                 // ✅ Marcar o dia no calendário
                 const celula = document.querySelector(`td[data-dia="${dataFormatada}"]`);
                 if (celula) {
                     celula.classList.add("dia-prova");
                 }
-    
+
                 // ✅ Adicionar na lista lateral
                 const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
                 const diaSemana = diasSemana[dataObj.getDay()];
-    
+
                 const li = document.createElement("li");
                 li.className = "list-group-item d-flex justify-content-between align-items-center";
                 li.innerHTML = `
@@ -312,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    
+
 
     // 🔹 Marcar o dia de hoje
     function marcarHoje() {
@@ -331,3 +334,60 @@ document.addEventListener("DOMContentLoaded", () => {
     marcarHoje();
 });
 
+// Perfil
+document.getElementById("editNameBtn").addEventListener("click", () => {
+    new bootstrap.Modal(document.getElementById("editNameModal")).show();
+});
+
+document.getElementById("saveName").addEventListener("click", () => {
+    const newName = document.getElementById("newProfileName").value.trim();
+    if (!newName) {
+        alert("O nome não pode estar vazio!");
+        return;
+    }
+    document.getElementById("profileName").textContent = newName;
+    bootstrap.Modal.getInstance(document.getElementById("editNameModal")).hide();
+});
+
+document.getElementById("editDOBBtn").addEventListener("click", () => {
+    new bootstrap.Modal(document.getElementById("editDOBModal")).show();
+});
+
+document.getElementById("saveDOB").addEventListener("click", () => {
+    const newDOB = document.getElementById("newProfileDOB").value;
+    if (!newDOB) {
+        alert("Data de nascimento inválida!");
+        return;
+    }
+    document.getElementById("profileDOB").textContent = newDOB;
+    bootstrap.Modal.getInstance(document.getElementById("editDOBModal")).hide();
+});
+
+document.getElementById("saveProfile").addEventListener("click", async () => {
+    const user = "id_do_usuario"; // Defina o ID do usuário autenticado
+
+    const nome = document.getElementById("profileName").textContent.trim();
+    const dataNascimento = document.getElementById("profileDOB").textContent.trim();
+
+    if (!nome || !dataNascimento) {
+        document.getElementById("errorMessage").textContent = "Preencha todos os campos!";
+        new bootstrap.Modal(document.getElementById("errorModal")).show();
+        return;
+    }
+
+    new bootstrap.Modal(document.getElementById("loadingModal")).show();
+
+    try {
+        await firebase.firestore().collection("usuarios").doc(user).set({
+            nome: nome,
+            dataNascimento: dataNascimento,
+        });
+
+        bootstrap.Modal.getInstance(document.getElementById("loadingModal")).hide();
+        alert("Perfil atualizado!");
+    } catch (error) {
+        bootstrap.Modal.getInstance(document.getElementById("loadingModal")).hide();
+        document.getElementById("errorMessage").textContent = "Erro ao salvar: " + error.message;
+        new bootstrap.Modal(document.getElementById("errorModal")).show();
+    }
+});

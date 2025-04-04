@@ -19,10 +19,68 @@
 
 </head>
 
-<body>
+<body class="container-fluid">
     <div id="jaoContainer-navbar"></div>
-    <div class="dm" id="jaoContainer-home"></div>
-    <div class="dm oculto" id="jaoContainer-perfil"></div>
+    <div id="jaoContainer-menu"></div>
+
+    <!-- Home -->
+    <section class="dm-J oculto mt-3" id="jao_home">
+        <h2 class="animate__animated animate__fadeInUp">Bem-vindo de volta, João Pedro!</h2>
+        <hr>
+        <div class="card animate__animated animate__fadeIn">
+            <div class="card-body">
+                <div id="mensagem"></div>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <div class="card-body">
+                <h6 class="fw-bold text-secondary">Feriados:</h6>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge bg-secondary p-2">18</span> Paixão de Cristo
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge bg-secondary p-2">21</span> Tiradentes
+                    </li>
+                </ul>
+
+                <h6 class="fw-bold text-success">IFMS:</h6>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="badge bg-success p-2">26</span> Ref. Quinta-feira
+                    </li>
+                </ul>
+                <h6 class="fw-bold text-primary">Provas:</h6>
+                <ul class="list-group mb-3" id="lista-provas">
+                    <!-- provas aparecerão aqui -->
+                </ul>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Perfil -->
+    <section class="dm-J" id="jao_home_perfil">
+        <!-- Mensagem de Boas-vindas -->
+        <div class="container text-center mt-5 pt-5">
+            <h1 class="animate__animated animate__fadeInUp animate__fast">Veja seu perfil abaixo</h1>
+
+            <!-- Card do Perfil -->
+            <div class="card mt-4 shadow-lg animate__animated animate__zoomIn">
+                <div class="card-body text-center">
+                    <img src="assets/img/docinho.jpeg" alt="Foto de Perfil"
+                        class="rounded-circle mb-3 border border-primary p-1">
+                    <h3 class="fw-bold">Jao</h3>
+                    <p class="text-muted">Data de Nascimento: 09/12/2007</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horarios -->
+    <section class="dm-J oculto" id="jao_if_horario">
+        <div id="jaoContainer-horario"></div>
+    </section>
 
     <!-- Bloco de notas - BD -->
     <section class="dm-J oculto" id="jao_home_blocoNotas">
@@ -150,7 +208,7 @@
     </section>
 
     <!-- Calendario -->
-    <section class="dm-J container-fluid" id="jao_home_calendario">
+    <section class="dm-J oculto container-fluid" id="jao_home_calendario">
         <div class="calendar">
             <h4 class="text-center">Abril</h4>
             <table class="table table-bordered">

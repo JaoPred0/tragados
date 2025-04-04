@@ -73,7 +73,7 @@ async function loadNotes() {
     try {
         toggleLoading(true);
 
-        // 🔹 Criando uma consulta filtrada para buscar apenas as notas do usuário "Wendy"
+        // 🔹 Criando uma consulta filtrada para buscar apenas as notas do usuário "Jao"
         const notesQuery = query(collection(db, "notes"), where("user", "==", user));
         const querySnapshot = await getDocs(notesQuery);
 
@@ -115,11 +115,12 @@ async function loadNotes() {
 
 // 🔹 Abrir modal de edição
 function openEditModal(id, content) {
-    closeAllModals();
+    forceCloseModals(); // Fecha qualquer modal preso antes
     currentEditId = id;
     editContent.value = content;
     editModal.show();
 }
+
 
 // 🔹 Salvar edição
 saveEditButton.addEventListener("click", async () => {
@@ -143,10 +144,11 @@ saveEditButton.addEventListener("click", async () => {
 
 // 🔹 Abrir modal de exclusão
 function openDeleteModal(id) {
-    closeAllModals();
+    forceCloseModals(); // Fecha qualquer modal preso antes
     currentDeleteId = id;
     deleteModal.show();
 }
+
 
 // 🔹 Confirmar exclusão
 confirmDeleteButton.addEventListener("click", async () => {
@@ -174,10 +176,32 @@ function closeAllModals() {
     document.body.classList.remove("modal-open");
 }
 
+
 // 🔹 Fechar modal ao clicar em cancelar
-document.querySelectorAll(".cancel-btn").forEach((btn) => {
-    btn.addEventListener("click", () => closeAllModals());
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.remove("modal-open");
+    document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
 });
+
+
+function forceCloseModals() {
+    document.querySelectorAll(".modal.show").forEach((modal) => {
+        const modalInstance = bootstrap.Modal.getInstance(modal);
+        if (modalInstance) modalInstance.hide();
+    });
+
+    setTimeout(() => {
+        document.querySelectorAll(".modal-backdrop").forEach((backdrop) => backdrop.remove());
+        document.body.classList.remove("modal-open");
+    }, 100); // Pequeno delay para garantir remoção
+}
+
+document.addEventListener("click", (event) => {
+    if (document.body.classList.contains("modal-open")) {
+        forceCloseModals();
+    }
+});
+
 
 // 🔹 Carregar notas ao iniciar
 document.addEventListener("DOMContentLoaded", async () => {
@@ -256,9 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
     async function marcarDiasProva() {
         const listaProvas = document.getElementById("lista-provas");
         listaProvas.innerHTML = ""; // limpa a lista antes de preencher
-
+    
         const querySnapshot = await getDocs(collection(db, "provas"));
-
+    
         querySnapshot.forEach((docSnap) => {
             const data = docSnap.data();
             if (data.user === user) {
@@ -267,17 +291,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // mês começa do 0
                 const ano = dataObj.getFullYear();
                 const dataFormatada = `${ano}-${mes}-${dia}`;
-
+    
                 // ✅ Marcar o dia no calendário
                 const celula = document.querySelector(`td[data-dia="${dataFormatada}"]`);
                 if (celula) {
                     celula.classList.add("dia-prova");
                 }
-
+    
                 // ✅ Adicionar na lista lateral
                 const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
                 const diaSemana = diasSemana[dataObj.getDay()];
-
+    
                 const li = document.createElement("li");
                 li.className = "list-group-item d-flex justify-content-between align-items-center";
                 li.innerHTML = `
@@ -288,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+    
 
     // 🔹 Marcar o dia de hoje
     function marcarHoje() {
