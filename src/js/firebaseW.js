@@ -15,6 +15,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const user = "Wendy";
+
 // 🔹 Elementos do DOM
 const saveButton = document.getElementById("saveNote");
 const editor = document.getElementById("editor");
@@ -54,7 +56,7 @@ saveButton.addEventListener("click", async () => {
 
     try {
         toggleLoading(true);
-        await addDoc(collection(db, "notes"), { user: "Wendy", content: noteContent });
+        await addDoc(collection(db, "notes"), { user: user, content: noteContent });
         editor.innerHTML = "";
         await loadNotes(); // 🔹 Agora espera carregar antes de continuar
     } catch (error) {
@@ -72,7 +74,7 @@ async function loadNotes() {
         toggleLoading(true);
 
         // 🔹 Criando uma consulta filtrada para buscar apenas as notas do usuário "Wendy"
-        const notesQuery = query(collection(db, "notes"), where("user", "==", "Wendy"));
+        const notesQuery = query(collection(db, "notes"), where("user", "==", user));
         const querySnapshot = await getDocs(notesQuery);
 
         notesTableBody.innerHTML = "";
@@ -181,3 +183,70 @@ document.querySelectorAll(".cancel-btn").forEach((btn) => {
 document.addEventListener("DOMContentLoaded", async () => {
     await loadNotes();
 });
+
+//Provas
+document.addEventListener("DOMContentLoaded", () => {
+    async function adicionarProva() {
+        const dataProva = document.getElementById("dataProva").value;
+        const materia = document.getElementById("materia").value;
+        const diaSemana = document.getElementById("diaSemana").value;
+        const conteudo = document.getElementById("conteudo").value;
+        const rascunho = document.getElementById("rascunho").value;
+
+        if (!dataProva || !materia || !diaSemana || !conteudo) {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        // Adicionando a prova no banco de dados
+        await addDoc(collection(db, "provas"), {
+            user,
+            dataProva,
+            materia,
+            diaSemana,
+            conteudo,
+            rascunho
+        });
+
+        // Após adicionar, carregar as provas novamente
+        carregarProvas();
+    }
+
+    // Tornar a função disponível globalmente
+    window.adicionarProva = adicionarProva;
+
+    async function carregarProvas() {
+        const listaProvas = document.getElementById("listaProvas");
+        listaProvas.innerHTML = ""; // Limpar a lista antes de carregar novamente
+
+        const querySnapshot = await getDocs(collection(db, "provas"));
+        querySnapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            if (data.user === user) {
+                const li = document.createElement("li");
+                li.classList.add("list-group-item", "animate__animated", "animate__fadeInUp");
+                li.innerHTML = `<strong>${data.materia}</strong> - ${data.dataProva} (${data.diaSemana})<br> ${data.conteudo} <br> ${data.rascunho}
+                    <button class="btn btn-danger btn-sm float-end remover-btn" data-id="${docSnap.id}">Remover</button>`;
+                listaProvas.appendChild(li);
+            }
+        });
+
+        // Adicionando eventos de remoção corretamente
+        document.querySelectorAll(".remover-btn").forEach(button => {
+            button.addEventListener("click", async () => {
+                await removerProva(button.dataset.id);
+            });
+        });
+    }
+
+    async function removerProva(id) {
+        // Remover a prova do banco de dados
+        await deleteDoc(doc(db, "provas", id));
+        // Após remover, carregar novamente as provas
+        carregarProvas();
+    }
+
+    // Carregar as provas assim que a página for carregada
+    carregarProvas();
+});
+

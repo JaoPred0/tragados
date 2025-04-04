@@ -49,14 +49,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar Nota</h5>
-                            <button type="button" class="btn-close" onclick="closeModal('editModal')" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" onclick="closeModal('editModal')"
+                                data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <textarea id="editContent" class="form-control"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary cancel-btn"
-                                onclick="closeAllModals()" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary cancel-btn" onclick="closeAllModals()"
+                                data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="saveEdit">Salvar</button>
                         </div>
                     </div>
@@ -69,14 +70,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Confirmar Exclusão</h5>
-                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')"
+                                data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <p>Tem certeza que deseja excluir esta nota?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary cancel-btn"
-                                onclick="closeAllModals()" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary cancel-btn" onclick="closeAllModals()"
+                                data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
                         </div>
                     </div>
@@ -112,6 +114,40 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- provas - bd -->
+    <section class="dm-F oculto container-fluid" id="felipe_if_provas">
+        <div class="container mt-4">
+            <h2 class="text-center mb-4">Criador de Datas de Provas</h2>
+
+            <div class="card p-3 animate__animated animate__fadeIn">
+                <div class="mb-2">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="dataProva">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Matéria</label>
+                    <input type="text" class="form-control" id="materia">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">N° da Matéria</label>
+                    <input type="text" class="form-control" id="diaSemana">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Conteúdo</label>
+                    <textarea class="form-control" id="conteudo"></textarea>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Rascunho</label>
+                    <textarea class="form-control" id="rascunho"></textarea>
+                </div>
+                <button class="btn btn-primary w-100" onclick="adicionarProva()">Adicionar Prova</button>
+            </div>
+
+            <h3 class="mt-4">Lista de Provas</h3>
+            <ul id="listaProvas" class="list-group mt-2 animate__animated animate__fadeInUp"></ul>
         </div>
     </section>
 </body>

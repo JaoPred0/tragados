@@ -114,6 +114,40 @@
             </div>
         </div>
     </section>
+
+    <!-- Provas - BD -->
+    <section class="dm-W oculto container-fluid" id="wendy_if_provas">
+        <div class="container mt-4">
+            <h2 class="text-center mb-4">Criador de Datas de Provas</h2>
+
+            <div class="card p-3 animate__animated animate__fadeIn">
+                <div class="mb-2">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="dataProva">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Matéria</label>
+                    <input type="text" class="form-control" id="materia">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">N° da Matéria</label>
+                    <input type="text" class="form-control" id="diaSemana">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Conteúdo</label>
+                    <textarea class="form-control" id="conteudo"></textarea>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Rascunho</label>
+                    <textarea class="form-control" id="rascunho"></textarea>
+                </div>
+                <button class="btn btn-primary w-100" onclick="adicionarProva()">Adicionar Prova</button>
+            </div>
+
+            <h3 class="mt-4">Lista de Provas</h3>
+            <ul id="listaProvas" class="list-group mt-2 animate__animated animate__fadeInUp"></ul>
+        </div>
+    </section>
 </body>
 
 </html>
