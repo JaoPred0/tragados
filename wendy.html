@@ -69,14 +69,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Confirmar Exclusão</h5>
-                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')"
+                                data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <p>Tem certeza que deseja excluir esta nota?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary cancel-btn"
-                                onclick="closeAllModals()" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary cancel-btn" onclick="closeAllModals()"
+                                data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
                         </div>
                     </div>
@@ -146,6 +147,99 @@
 
             <h3 class="mt-4">Lista de Provas</h3>
             <ul id="listaProvas" class="list-group mt-2 animate__animated animate__fadeInUp"></ul>
+        </div>
+    </section>
+
+    <!-- Calendario -->
+    <section class="dm-W oculto" id="wendy_home_calendario">
+        <div class="calendar">
+            <h4 class="text-center">Abril</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Seg</th>
+                        <th>Ter</th>
+                        <th>Qua</th>
+                        <th>Qui</th>
+                        <th>Sex</th>
+                        <th class="text-secondary">Sáb</th>
+                        <th class="domingo">Dom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td> <!-- Seg (31/03) -->
+                        <td data-dia="2025-04-01">1</td>
+                        <td data-dia="2025-04-02">2</td>
+                        <td data-dia="2025-04-03">3</td>
+                        <td data-dia="2025-04-04">4</td>
+                        <td data-dia="2025-04-05" class="text-secondary">5</td>
+                        <td data-dia="2025-04-06" class="domingo text-danger">6</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-04-07">7</td>
+                        <td data-dia="2025-04-08">8</td>
+                        <td data-dia="2025-04-09">9</td>
+                        <td data-dia="2025-04-10">10</td>
+                        <td data-dia="2025-04-11">11</td>
+                        <td data-dia="2025-04-12" class="text-secondary">12</td>
+                        <td data-dia="2025-04-13" class="domingo text-danger">13</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-04-14">14</td>
+                        <td data-dia="2025-04-15">15</td>
+                        <td data-dia="2025-04-16">16</td>
+                        <td data-dia="2025-04-17">17</td>
+                        <td data-dia="2025-04-18" class="calendar-feriado">18</td>
+                        <td data-dia="2025-04-19" class="text-secondary">19</td>
+                        <td data-dia="2025-04-20" class="domingo text-danger">20</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-04-21" class="calendar-feriado text-danger">21</td>
+                        <td data-dia="2025-04-22">22</td>
+                        <td data-dia="2025-04-23">23</td>
+                        <td data-dia="2025-04-24">24</td>
+                        <td data-dia="2025-04-25">25</td>
+                        <td data-dia="2025-04-26" class="calendar-ifms text-secondary">26</td>
+                        <td data-dia="2025-04-27" class="domingo text-danger">27</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-04-28">28</td>
+                        <td data-dia="2025-04-29">29</td>
+                        <td data-dia="2025-04-30">30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="container mt-3">
+                <div class="card-body">
+                    <h6 class="fw-bold text-secondary">Feriados:</h6>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary p-2">18</span> Paixão de Cristo
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary p-2">21</span> Tiradentes
+                        </li>
+                    </ul>
+
+                    <h6 class="fw-bold text-success">IFMS:</h6>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="badge bg-success p-2">26</span> Ref. Quinta-feira
+                        </li>
+                    </ul>
+                    <h6 class="fw-bold text-primary">Provas:</h6>
+                    <ul class="list-group mb-3" id="lista-provas">
+                        <!-- provas aparecerão aqui -->
+                    </ul>
+
+                </div>
+            </div>
         </div>
     </section>
 </body>

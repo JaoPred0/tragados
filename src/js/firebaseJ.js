@@ -208,9 +208,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadNotes();
 });
 
-
-//Provas
+//prova
 document.addEventListener("DOMContentLoaded", () => {
+    // 🔹 Adicionar nova prova
     async function adicionarProva() {
         const dataProva = document.getElementById("dataProva").value;
         const materia = document.getElementById("materia").value;
@@ -223,40 +223,45 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Adicionando a prova no banco de dados
+        const createdAt = new Date().toISOString();
+
         await addDoc(collection(db, "provas"), {
             user,
             dataProva,
             materia,
             diaSemana,
             conteudo,
-            rascunho
+            rascunho,
+            createdAt
         });
 
-        // Após adicionar, carregar as provas novamente
-        carregarProvas();
+        carregarProvas(); // Atualiza a lista
+        marcarDiasProva(); // Atualiza o calendário
     }
 
-    // Tornar a função disponível globalmente
     window.adicionarProva = adicionarProva;
 
+    // 🔹 Carregar lista de provas
     async function carregarProvas() {
         const listaProvas = document.getElementById("listaProvas");
-        listaProvas.innerHTML = ""; // Limpar a lista antes de carregar novamente
+        listaProvas.innerHTML = "";
 
         const querySnapshot = await getDocs(collection(db, "provas"));
         querySnapshot.forEach((docSnap) => {
             const data = docSnap.data();
             if (data.user === user) {
+                const dataCriacao = new Date(data.createdAt).toLocaleString("pt-BR");
                 const li = document.createElement("li");
                 li.classList.add("list-group-item", "animate__animated", "animate__fadeInUp");
-                li.innerHTML = `<strong>${data.materia}</strong> - ${data.dataProva} (${data.diaSemana})<br> ${data.conteudo} <br> ${data.rascunho}
+                li.innerHTML = `
+                    <strong>${data.materia}</strong> - Prova: ${data.dataProva} (${data.diaSemana})<br>
+                    <small>Criado em: ${dataCriacao}</small><br>
+                    ${data.conteudo} <br> ${data.rascunho}
                     <button class="btn btn-danger btn-sm float-end remover-btn" data-id="${docSnap.id}">Remover</button>`;
                 listaProvas.appendChild(li);
             }
         });
 
-        // Adicionando eventos de remoção corretamente
         document.querySelectorAll(".remover-btn").forEach(button => {
             button.addEventListener("click", async () => {
                 await removerProva(button.dataset.id);
@@ -264,14 +269,65 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // 🔹 Remover prova
     async function removerProva(id) {
-        // Remover a prova do banco de dados
         await deleteDoc(doc(db, "provas", id));
-        // Após remover, carregar novamente as provas
         carregarProvas();
+        marcarDiasProva();
     }
 
-    // Carregar as provas assim que a página for carregada
+    // 🔹 Marcar dias de prova no calendário
+    async function marcarDiasProva() {
+        const listaProvas = document.getElementById("lista-provas");
+        listaProvas.innerHTML = ""; // limpa a lista antes de preencher
+    
+        const querySnapshot = await getDocs(collection(db, "provas"));
+    
+        querySnapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            if (data.user === user) {
+                const dataObj = new Date(data.dataProva + "T00:00:00");
+                const dia = String(dataObj.getDate()).padStart(2, '0');
+                const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // mês começa do 0
+                const ano = dataObj.getFullYear();
+                const dataFormatada = `${ano}-${mes}-${dia}`;
+    
+                // ✅ Marcar o dia no calendário
+                const celula = document.querySelector(`td[data-dia="${dataFormatada}"]`);
+                if (celula) {
+                    celula.classList.add("dia-prova");
+                }
+    
+                // ✅ Adicionar na lista lateral
+                const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+                const diaSemana = diasSemana[dataObj.getDay()];
+    
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                li.innerHTML = `
+                <span class="badge bg-primary p-2">${dia}</span>
+                    <span class="fw-bold text-primary">${data.materia}</span>
+                `;
+                listaProvas.appendChild(li);
+            }
+        });
+    }
+    
+
+    // 🔹 Marcar o dia de hoje
+    function marcarHoje() {
+        const hoje = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
+        const dias = document.querySelectorAll(".calendar td");
+        dias.forEach(td => {
+            if (td.dataset.dia === hoje) {
+                td.classList.add("hoje");
+            }
+        });
+    }
+
+    // 🔹 Inicialização
     carregarProvas();
+    marcarDiasProva();
+    marcarHoje();
 });
 

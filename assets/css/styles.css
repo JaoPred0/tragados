@@ -61,3 +61,9 @@ textarea {
 .container {
     overflow: visible !important;
 }
+
+.dia-prova {
+    background-color: #007BFF !important;
+    color: white !important;
+    font-weight: bold;
+}
