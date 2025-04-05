@@ -16,4 +16,3 @@ document.head.appendChild(scriptSwiper);
 scriptAOS.onload = () => {
     AOS.init({ duration: 500 });
 };
-
