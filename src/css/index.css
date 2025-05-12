@@ -1,25 +1,12 @@
-/* 📌 Bootstrap - Framework CSS responsivo */
-@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/core@1.2.0/dist/css/tabler-flags.min.css');
 
-/* 📌 Bootstrap Icon- Framework CSS responsivo */
+@import url('https://cdn.jsdelivr.net/npm/@tabler/core@1.2.0/dist/css/tabler-payments.min.css');
 
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url('https://cdn.jsdelivr.net/npm/@tabler/core@1.2.0/dist/css/tabler-social.min.css');
 
-/* 🎯 Animate.css - Animações CSS prontas */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/core@1.2.0/dist/css/tabler-vendors.min.css');
 
-/* 🚀 AOS (Animate On Scroll) - Animações ao rolar a página */
-@import url('https://unpkg.com/aos@next/dist/aos.css');
-
-/* 🔥 Font Awesome - Ícones personalizáveis */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-
-/* 🖋️ Google Fonts (Roboto) - Fonte estilizada */
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
-
-
-/* 🎡 Swiper - Biblioteca de carrosséis e sliders */
-@import url('https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/core@1.2.0/dist/css/tabler.min.css');
 
 /* Ocultar elementos inicialmente */
 .oculto {

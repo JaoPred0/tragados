@@ -58,6 +58,7 @@ textarea {
     display: block !important;
 
 }
+
 .container {
     overflow: visible !important;
 }
@@ -73,22 +74,139 @@ textarea {
     border: none;
     border-radius: 12px;
     margin-bottom: 20px;
-  }
-  .card-header {
+}
+
+.card-header {
     background-color: #272727;
     font-weight: bold;
     font-size: 1.2rem;
-  }
-  .section-title {
+}
+
+.section-title {
     margin-top: 30px;
     margin-bottom: 15px;
     border-left: 5px solid #0dcaf0;
     padding-left: 10px;
     font-size: 1.4rem;
-  }
-  .footer {
+}
+
+.footer {
     text-align: center;
     margin-top: 40px;
     font-size: 0.9rem;
     color: #aaa;
-  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Adicionando as mudanças de tema */
+.dark-theme {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-theme .navbar {
+    background-color: #1f1f1f;
+    border-color: #333;
+}
+
+.dark-theme .card {
+    background-color: #1f1f1f;
+    border-color: #333;
+}
+
+.dark-theme .btn-outline-primary {
+    border-color: #444;
+    color: #fff;
+}
+
+.dark-theme .btn-outline-primary:hover {
+    background-color: #555;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.card-hover:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#jao_home h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: #0066cc;
+    text-shadow: 1px 1px 3px rgba(0, 102, 204, 0.3);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+    transition: background-color 0.3s ease;
+}
+
+.badge:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.list-group-item {
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f1f1f1;
+}
+
+#jao_home_perfil h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #0066cc;
+    text-shadow: 1px 1px 4px rgba(0, 102, 204, 0.4);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0066cc;
+    color: white;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
