@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -15,49 +15,139 @@
     <!-- Script -->
     <script src="assets/js/scripts.js"></script>
     <script src="assets/js/wendy.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="src/js/firebaseW.js" type="module"></script>
 
 </head>
 
-<body class="container-fluid">
-    <div id="wendyContainer-navbar"></div>
-    <div id="wendyContainer-menu"></div>
+<body>
+    <header class="navbar navbar-expand-md d-print-none bg-light">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+                aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- Home -->
-    <section id="home" class="dm-W mt-3">
-        <h2 class="animate__animated animate__fadeInUp">Bem-vindo de volta, Emili Oliveira!</h2>
-        <hr>
-        <div class="card">
-            <div class="card-body">
-                <div id="mensagem"></div>
+            <a href="#" class="navbar-brand navbar-brand-autodark me-3">
+                Emili
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav">
+                    <!-- Home -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarDivW('home')">
+                            <span class="nav-link-icon"><i class="fas fa-home"></i></span>
+                            <span class="nav-link-title">Home</span>
+                        </a>
+                    </li>
+
+                    <!-- Perfil -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#perfil" onclick="mostrarDivW('wendy_home_perfil')">
+                            <span class="nav-link-icon"><i class="fas fa-user"></i></span>
+                            <span class="nav-link-title">Perfil</span>
+                        </a>
+                    </li>
+
+                    <!-- Calendário Geral -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#calendario" onclick="mostrarDivW('wendy_home_calendario')">
+                            <span class="nav-link-icon"><i class="fas fa-calendar-alt"></i></span>
+                            <span class="nav-link-title">Calendário Geral</span>
+                        </a>
+                    </li>
+
+                    <!-- Bloco de Notas -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarDivW('wendy_home_blocoNotas')">
+                            <span class="nav-link-icon"><i class="fas fa-sticky-note"></i></span>
+                            <span class="nav-link-title">Bloco de Notas</span>
+                        </a>
+                    </li>
+
+                    <!-- IF - Horário -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#horario" onclick="mostrarDivW('wendy_if_horario')">
+                            <span class="nav-link-icon"><i class="fas fa-clock"></i></span>
+                            <span class="nav-link-title">Horário</span>
+                        </a>
+                    </li>
+
+                    <!-- IF - Provas -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#provas" onclick="mostrarDivW('wendy_if_provas')">
+                            <span class="nav-link-icon"><i class="fas fa-book"></i></span>
+                            <span class="nav-link-title">Provas</span>
+                        </a>
+                    </li
+                </ul>
+                <!-- Botão de Sair -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="index.html" class="btn btn-danger ms-3">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="container mt-3">
-            <div class="card-body">
-                <h6 class="fw-bold text-secondary">Feriados:</h6>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="badge bg-secondary p-2">18</span> Paixão de Cristo
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="badge bg-secondary p-2">21</span> Tiradentes
-                    </li>
-                </ul>
+    </header>
 
-                <h6 class="fw-bold text-success">IFMS:</h6>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span class="badge bg-success p-2">26</span> Ref. Quinta-feira
-                    </li>
-                </ul>
-                <h6 class="fw-bold text-primary">Provas:</h6>
-                <ul class="list-group mb-3" id="lista-provas">
-                    <!-- provas aparecerão aqui -->
-                </ul>
+    <!-- Home -->
+    <section class="dm-W mt-3" id="home">
+        <h2 class="animate__animated animate__fadeInUp text-center text-primary">Bem-vindo de volta, Emili Oliveira!
+        </h2>
+        <hr>
+
+        <!-- Container de Cartões Responsivos -->
+        <div class="container mt-3">
+            <div class="row">
+                <!-- Cartão de Saudação -->
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card animate__animated animate__fadeInUp shadow-lg border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">Mensagem de boas-vindas</h5>
+                            <div id="mensagem" class="text-muted">
+                                <!-- Você pode atualizar essa mensagem dinamicamente via JavaScript -->
+                                <p>Estamos felizes em ter você de volta, Emili! Que seu dia seja produtivo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cartão de Feriados e Eventos -->
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card shadow-sm animate__animated animate__fadeInUp">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-secondary">Feriados:</h6>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-secondary p-2 rounded-circle">18</span> Paixão de Cristo
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-secondary p-2 rounded-circle">21</span> Tiradentes
+                                </li>
+                            </ul>
+
+                            <h6 class="fw-bold text-success">IFMS:</h6>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-success p-2 rounded-circle">26</span> Ref. Quinta-feira
+                                </li>
+                            </ul>
+
+                            <h6 class="fw-bold text-primary">Provas:</h6>
+                            <ul class="list-group mb-3" id="lista-provas">
+                                <!-- provas aparecerão aqui -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
     <div class="dm oculto" id="wendyContainer-perfil"></div>
 
     <!-- Horario -->
@@ -69,23 +159,32 @@
     <section class="dm-W oculto" id="wendy_home_perfil">
         <!-- Mensagem de Boas-vindas -->
         <div class="container text-center mt-5 pt-5">
-            <h1 class="animate__animated animate__fadeInUp animate__fast">Veja seu perfil abaixo</h1>
+            <h1 class="animate__animated animate__fadeInUp animate__fast text-primary">Veja seu perfil abaixo</h1>
 
             <!-- Card do Perfil -->
-            <div class="card mt-4 shadow-lg animate__animated animate__zoomIn">
+            <div class="card mt-4 shadow-lg border-0 animate__animated animate__zoomIn">
                 <div class="card-body text-center">
                     <img src="assets/img/florzinha.png" alt="Foto de Perfil"
-                        class="rounded-circle mb-3 border border-primary p-1">
-                    <h3 class="fw-bold">Emili</h3>
+                        class="rounded-circle mb-3 border border-primary p-1 img-fluid shadow-sm"
+                        style="width: 150px; height: 150px;">
+                    <h3 class="fw-bold text-dark">Emili</h3>
                     <p class="text-muted">Data de Nascimento: xx/xx/xxxx</p>
+
+                    <!-- Informações adicionais -->
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="index.html" class="btn btn-outline-danger mx-2" role="button">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+
     <!-- Bloco de notas bd -->
     <section class="dm-W oculto" id="wendy_home_blocoNotas">
-        <div class="container">
+        <div class="container py-5">
             <!-- Modal de Carregamento -->
             <div id="loadingModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered">
@@ -106,14 +205,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Editar Nota</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" onclick="closeModal('editModal')"
+                                data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <textarea id="editContent" class="form-control"></textarea>
+                            <textarea id="editContent" class="form-control" rows="5"></textarea>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary cancel-btn"
-                                onclick="closeAllModals()" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" onclick="closeAllModals()"
+                                data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-primary" id="saveEdit">Salvar</button>
                         </div>
                     </div>
@@ -133,7 +233,7 @@
                             <p>Tem certeza que deseja excluir esta nota?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary cancel-btn" onclick="closeAllModals()"
+                            <button type="button" class="btn btn-secondary" onclick="closeAllModals()"
                                 data-bs-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
                         </div>
@@ -141,27 +241,30 @@
                 </div>
             </div>
 
-            <div class="card note-card">
-                <div class="card-header text-center">
+            <!-- Bloco de Notas -->
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
                     <h4>Bloco de Notas</h4>
                 </div>
                 <div class="card-body">
-                    <div contenteditable="true" id="editor" class="form-control"></div>
-                    <button id="saveNote" class="btn btn-success mt-2 w-100"><i class="fas fa-save"></i> Salvar
-                        Nota</button>
+                    <div contenteditable="true" id="editor" class="form-control mb-3" style="min-height: 150px;"></div>
+                    <button id="saveNote" class="btn btn-success w-100 py-2">
+                        <i class="fas fa-save"></i> Salvar Nota
+                    </button>
                 </div>
             </div>
 
-            <div class="card mt-4">
-                <div class="card-header text-center">
+            <!-- Tabela de Notas -->
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header text-center bg-secondary text-white">
                     <h4>Notas de Emili</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Nota</th>
-                                <th>Ações</th>
+                                <th scope="col">Nota</th>
+                                <th scope="col">Ações</th>
                             </tr>
                         </thead>
                         <tbody id="notesTableBody">
@@ -173,45 +276,51 @@
         </div>
     </section>
 
+
     <!-- Provas - BD -->
     <section class="dm-W oculto container-fluid" id="wendy_if_provas">
         <div class="container mt-4">
-            <h2 class="text-center mb-4">Criador de Datas de Provas</h2>
+            <h2 class="text-center mb-4 text-primary">Criador de Datas de Provas</h2>
 
-            <div class="card p-3 animate__animated animate__fadeIn">
-                <div class="mb-2">
-                    <label class="form-label">Data</label>
+            <div class="card p-4 shadow-sm animate__animated animate__fadeIn">
+                <div class="mb-3">
+                    <label class="form-label" for="dataProva">Data da Prova</label>
                     <input type="date" class="form-control" id="dataProva">
                 </div>
-                <div class="mb-2">
-                    <label class="form-label">Matéria</label>
-                    <input type="text" class="form-control" id="materia">
+                <div class="mb-3">
+                    <label class="form-label" for="materia">Matéria</label>
+                    <input type="text" class="form-control" id="materia" placeholder="Ex: Matemática, História">
                 </div>
-                <div class="mb-2">
-                    <label class="form-label">N° da Matéria</label>
-                    <input type="text" class="form-control" id="diaSemana">
+                <div class="mb-3">
+                    <label class="form-label" for="diaSemana">N° da Matéria</label>
+                    <input type="text" class="form-control" id="diaSemana" placeholder="Ex: 1ª Semana">
                 </div>
-                <div class="mb-2">
-                    <label class="form-label">Conteúdo</label>
-                    <textarea class="form-control" id="conteudo"></textarea>
+                <div class="mb-3">
+                    <label class="form-label" for="conteudo">Conteúdo</label>
+                    <textarea class="form-control" id="conteudo" rows="4"
+                        placeholder="Descreva o conteúdo a ser cobrado na prova"></textarea>
                 </div>
-                <div class="mb-2">
-                    <label class="form-label">Rascunho</label>
-                    <textarea class="form-control" id="rascunho"></textarea>
+                <div class="mb-3">
+                    <label class="form-label" for="rascunho">Rascunho</label>
+                    <textarea class="form-control" id="rascunho" rows="4"
+                        placeholder="Adicione notas, dicas ou rascunhos relacionados à prova"></textarea>
                 </div>
-                <button class="btn btn-primary w-100" onclick="adicionarProva()">Adicionar Prova</button>
+                <button class="btn btn-primary w-100 mt-3" onclick="adicionarProva()">
+                    <i class="fas fa-plus-circle"></i> Adicionar Prova
+                </button>
             </div>
 
-            <h3 class="mt-4">Lista de Provas</h3>
+            <h3 class="mt-5">Lista de Provas</h3>
             <ul id="listaProvas" class="list-group mt-2 animate__animated animate__fadeInUp"></ul>
         </div>
     </section>
+
 
     <!-- Calendario -->
     <section class="dm-W oculto" id="wendy_home_calendario">
         <div class="calendar">
             <h4 class="text-center">Abril</h4>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover animate__animated animate__fadeInUp">
                 <thead>
                     <tr>
                         <th>Seg</th>
@@ -220,53 +329,54 @@
                         <th>Qui</th>
                         <th>Sex</th>
                         <th class="text-secondary">Sáb</th>
-                        <th class="domingo">Dom</th>
+                        <th class="domingo text-danger">Dom</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td> <!-- Seg (31/03) -->
-                        <td data-dia="2025-04-01">1</td>
-                        <td data-dia="2025-04-02">2</td>
-                        <td data-dia="2025-04-03">3</td>
-                        <td data-dia="2025-04-04">4</td>
-                        <td data-dia="2025-04-05" class="text-secondary">5</td>
-                        <td data-dia="2025-04-06" class="domingo text-danger">6</td>
+                        <td></td> <!-- Seg (27/04) -->
+                        <td></td> <!-- Ter (28/04) -->
+                        <td></td> <!-- Qua (29/04) -->
+                        <td data-dia="2025-05-01" class="animate__animated animate__zoomIn">1</td>
+                        <td data-dia="2025-05-02" class="animate__animated animate__zoomIn">2</td>
+                        <td data-dia="2025-05-03" class="text-secondary animate__animated animate__zoomIn">3</td>
+                        <td data-dia="2025-05-04" class="domingo text-danger animate__animated animate__zoomIn">4</td>
                     </tr>
                     <tr>
-                        <td data-dia="2025-04-07">7</td>
-                        <td data-dia="2025-04-08">8</td>
-                        <td data-dia="2025-04-09">9</td>
-                        <td data-dia="2025-04-10">10</td>
-                        <td data-dia="2025-04-11">11</td>
-                        <td data-dia="2025-04-12" class="text-secondary">12</td>
-                        <td data-dia="2025-04-13" class="domingo text-danger">13</td>
+                        <td data-dia="2025-05-05" class="animate__animated animate__zoomIn">5</td>
+                        <td data-dia="2025-05-06" class="animate__animated animate__zoomIn">6</td>
+                        <td data-dia="2025-05-07" class="animate__animated animate__zoomIn">7</td>
+                        <td data-dia="2025-05-08" class="animate__animated animate__zoomIn">8</td>
+                        <td data-dia="2025-05-09" class="animate__animated animate__zoomIn">9</td>
+                        <td data-dia="2025-05-10" class="text-secondary animate__animated animate__zoomIn">10</td>
+                        <td data-dia="2025-05-11" class="domingo text-danger animate__animated animate__zoomIn">11</td>
                     </tr>
                     <tr>
-                        <td data-dia="2025-04-14">14</td>
-                        <td data-dia="2025-04-15">15</td>
-                        <td data-dia="2025-04-16">16</td>
-                        <td data-dia="2025-04-17">17</td>
-                        <td data-dia="2025-04-18" class="calendar-feriado">18</td>
-                        <td data-dia="2025-04-19" class="text-secondary">19</td>
-                        <td data-dia="2025-04-20" class="domingo text-danger">20</td>
+                        <td data-dia="2025-05-12" class="animate__animated animate__zoomIn">12</td>
+                        <!-- Segunda-feira (Hoje) -->
+                        <td data-dia="2025-05-13" class="animate__animated animate__zoomIn">13</td>
+                        <td data-dia="2025-05-14" class="animate__animated animate__zoomIn">14</td>
+                        <td data-dia="2025-05-15" class="animate__animated animate__zoomIn">15</td>
+                        <td data-dia="2025-05-16" class="animate__animated animate__zoomIn">16</td>
+                        <td data-dia="2025-05-17" class="text-secondary animate__animated animate__zoomIn">17</td>
+                        <td data-dia="2025-05-18" class="domingo text-danger animate__animated animate__zoomIn">18</td>
                     </tr>
                     <tr>
-                        <td data-dia="2025-04-21" class="calendar-feriado text-danger">21</td>
-                        <td data-dia="2025-04-22">22</td>
-                        <td data-dia="2025-04-23">23</td>
-                        <td data-dia="2025-04-24">24</td>
-                        <td data-dia="2025-04-25">25</td>
-                        <td data-dia="2025-04-26" class="calendar-ifms text-secondary">26</td>
-                        <td data-dia="2025-04-27" class="domingo text-danger">27</td>
+                        <td data-dia="2025-05-19" class="animate__animated animate__zoomIn">19</td>
+                        <td data-dia="2025-05-20" class="animate__animated animate__zoomIn">20</td>
+                        <td data-dia="2025-05-21" class="animate__animated animate__zoomIn">21</td>
+                        <td data-dia="2025-05-22" class="animate__animated animate__zoomIn">22</td>
+                        <td data-dia="2025-05-23" class="animate__animated animate__zoomIn">23</td>
+                        <td data-dia="2025-05-24" class="text-secondary animate__animated animate__zoomIn">24</td>
+                        <td data-dia="2025-05-25" class="domingo text-danger animate__animated animate__zoomIn">25</td>
                     </tr>
                     <tr>
-                        <td data-dia="2025-04-28">28</td>
-                        <td data-dia="2025-04-29">29</td>
-                        <td data-dia="2025-04-30">30</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td data-dia="2025-05-26" class="animate__animated animate__zoomIn">26</td>
+                        <td data-dia="2025-05-27" class="animate__animated animate__zoomIn">27</td>
+                        <td data-dia="2025-05-28" class="animate__animated animate__zoomIn">28</td>
+                        <td data-dia="2025-05-29" class="animate__animated animate__zoomIn">29</td>
+                        <td data-dia="2025-05-30" class="animate__animated animate__zoomIn">30</td>
+                        <td data-dia="2025-05-31" class="text-secondary animate__animated animate__zoomIn">31</td>
                         <td></td>
                     </tr>
                 </tbody>
@@ -277,17 +387,10 @@
                     <h6 class="fw-bold text-secondary">Feriados:</h6>
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span class="badge bg-secondary p-2">18</span> Paixão de Cristo
+                            <span class="badge bg-secondary p-2 text-light">1</span> Dia do Trabalho
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span class="badge bg-secondary p-2">21</span> Tiradentes
-                        </li>
-                    </ul>
-
-                    <h6 class="fw-bold text-success">IFMS:</h6>
-                    <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span class="badge bg-success p-2">26</span> Ref. Quinta-feira
+                            <span class="badge bg-secondary p-2 text-light">26</span> Corpus Christi
                         </li>
                     </ul>
                     <h6 class="fw-bold text-primary">Provas:</h6>
