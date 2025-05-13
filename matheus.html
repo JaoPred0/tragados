@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Estilo -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Cdn -->
+    <link rel="stylesheet" href="src/css/index.css">
+    <script src="src/js/index.js"></script>
+    <script src="src/js/pageLoad.js"></script>
+    <script src="src/js/mostrarDiv.js"></script>
+
+    <!-- BD -->
+    <script src="src/js/firebaseJ.js" type="module"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <title> Tragados </title>
+    <script>
+        function setActive(section) {
+            // Remover a classe 'active' de todos os itens de navegação
+            let items = document.querySelectorAll('.navbar-nav .nav-item');
+            items.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Adicionar a classe 'active' ao item clicado
+            let activeItem = document.querySelector(`.navbar-nav .nav-item a[href='#'][onclick="setActive('${section}')"]`);
+            activeItem.closest('.nav-item').classList.add('active');
+
+            // Exibir o conteúdo relacionado ao item (opcional)
+            mostrarDivJ(`matheus_home_${section}`);
+        }
+    </script>
+</head>
+
+<body>
+    <header class="navbar navbar-expand-md d-print-none">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+                aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a href="#" class="navbar-brand navbar-brand-autodark me-3">
+                <!-- Logo ou nome do site, se necessário -->
+                Matheus
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="matheus.html">
+                            <span class="nav-link-icon">
+                                <!-- Ícone de Home usando Font Awesome -->
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span class="nav-link-title">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarDivJ('matheus_if_horario')">
+                            <span class="nav-link-icon">
+                                <!-- Ícone de Horário usando Font Awesome -->
+                                <i class="fas fa-clock"></i>
+                            </span>
+                            <span class="nav-link-title">Horários</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="setActive('perfil')">
+                            <span class="nav-link-icon">
+                                <!-- Ícone de Perfil usando Font Awesome -->
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <span class="nav-link-title">Perfil</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="setActive('calendario')">
+                            <span class="nav-link-icon">
+                                <!-- Ícone de Calendário usando Font Awesome -->
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                            <span class="nav-link-title">Calendário</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="setActive('blocoNotas')">
+                            <span class="nav-link-icon">
+                                <!-- Ícone de Bloco de Notas usando Font Awesome -->
+                                <i class="fas fa-sticky-note"></i>
+                            </span>
+                            <span class="nav-link-title">Bloco de Notas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="mostrarDivJ('matheus_if_provas')">
+                            <span class="nav-link-icon">
+                                <!-- Ícone de Bloco de Notas usando Font Awesome -->
+                                <i class="fas fa-book"></i>
+                            </span>
+                            <span class="nav-link-title">Provas</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Botão de Sair -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="index.html" class="btn btn-danger ms-3">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+
+    <!-- Home -->
+
+    <section class="dm-J mt-3" id="matheus_home">
+        <h2 class="animate__animated animate__fadeInUp text-center text-primary">Bem-vindo de volta, Matheus Cruz!</h2>
+        <hr>
+
+        <!-- Container de Cartões Responsivos -->
+        <div class="container mt-3">
+            <div class="row">
+                <!-- Cartão de Saudação (100% largura em dispositivos pequenos e 50% em dispositivos grandes) -->
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card animate__animated animate__fadeInUp shadow-lg border-0">
+                        <div class="card-body">
+                            <h5 class="card-title">Mensagem de boas-vindas</h5>
+                            <div id="mensagem" class="text-muted">
+                                <p>Que seu dia seja produtivo e cheio de boas oportunidades!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cartão de Feriados e Eventos (100% largura em dispositivos pequenos e 50% em dispositivos grandes) -->
+                <div class="col-12 col-md-6 mb-4">
+                    <div class="card shadow-sm animate__animated animate__fadeInUp">
+                        <div class="card-body">
+                            <h6 class="fw-bold text-secondary">Feriados:</h6>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-secondary p-2 rounded-circle">18</span> Paixão de Cristo
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-secondary p-2 rounded-circle">21</span> Tiradentes
+                                </li>
+                            </ul>
+
+                            <h6 class="fw-bold text-success">IFMS:</h6>
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-success p-2 rounded-circle">26</span> Ref. Quinta-feira
+                                </li>
+                            </ul>
+
+                            <h6 class="fw-bold text-primary">Provas:</h6>
+                            <ul class="list-group mb-3" id="lista-provas">
+                                <!-- As provas aparecerão aqui -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Perfil -->
+    <section class="dm-J oculto" id="matheus_home_perfil">
+        <!-- Mensagem de Boas-vindas -->
+        <div class="container text-center mt-5 pt-5">
+            <h1 class="animate__animated animate__fadeInUp animate__fast text-primary">Veja seu perfil abaixo</h1>
+
+            <!-- Card do Perfil -->
+            <div class="card mt-4 shadow-lg border-0 animate__animated animate__zoomIn">
+                <div class="card-body text-center">
+                    <img src="assets/img/sem-perfil.png" alt="Foto de Perfil"
+                        class="rounded-circle mb-3 border border-primary p-1 img-fluid shadow-sm"
+                        style="width: 150px; height: 150px;">
+                    <h3 class="fw-bold text-dark">Matheus Cruz</h3>
+                    <p class="text-muted">Data de Nascimento: xx/xx/xxxx</p>
+
+                    <!-- Informações adicionais -->
+                    <div class="d-flex justify-content-center mt-4">
+                        <a href="index.html" class="btn btn-outline-danger mx-2" role="button">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horarios -->
+    <section class="dm-J oculto" id="matheus_if_horario">
+        <div id="matheusContainer-horario"></div>
+    </section>
+
+    <!-- Bloco de notas - BD -->
+    <section class="dm-J oculto" id="matheus_home_blocoNotas">
+        <div class="container py-5">
+            <!-- Modal de Carregamento -->
+            <div id="loadingModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-center p-4 animate__animated animate__fadeIn">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
+                                <span class="visually-hidden">Carregando...</span>
+                            </div>
+                        </div>
+                        <p class="mt-3">Carregando...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Edição -->
+            <div id="editModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar Nota</h5>
+                            <button type="button" class="btn-close" onclick="closeModal('editModal')"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <textarea id="editContent" class="form-control" rows="5"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeAllModals()"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="saveEdit">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Exclusão -->
+            <div id="deleteModal" class="modal fade" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirmar Exclusão</h5>
+                            <button type="button" class="btn-close" onclick="closeModal('deleteModal')"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Tem certeza que deseja excluir esta nota?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="closeAllModals()"
+                                data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="confirmDelete">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloco de Notas -->
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
+                    <h4>Bloco de Notas</h4>
+                </div>
+                <div class="card-body">
+                    <div contenteditable="true" id="editor" class="form-control mb-3" style="min-height: 150px;"></div>
+                    <button id="saveNote" class="btn btn-success w-100 py-2">
+                        <i class="fas fa-save"></i> Salvar Nota
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabela de Notas -->
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header text-center bg-secondary text-white">
+                    <h4>Notas de matheus</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nota</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notesTableBody">
+                            <!-- Notas carregadas aqui -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Provas - BD -->
+    <section class="dm-J oculto container-fluid" id="matheus_if_provas">
+        <div class="container mt-4">
+            <h2 class="text-center mb-4 text-primary">Criador de Datas de Provas</h2>
+
+            <div class="card p-4 shadow-sm animate__animated animate__fadeIn">
+                <div class="mb-3">
+                    <label class="form-label" for="dataProva">Data da Prova</label>
+                    <input type="date" class="form-control" id="dataProva">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="materia">Matéria</label>
+                    <input type="text" class="form-control" id="materia" placeholder="Ex: Matemática, História">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="diaSemana">N° da Matéria</label>
+                    <input type="text" class="form-control" id="diaSemana" placeholder="Ex: 1ª Semana">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="conteudo">Conteúdo</label>
+                    <textarea class="form-control" id="conteudo" rows="4"
+                        placeholder="Descreva o conteúdo a ser cobrado na prova"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="rascunho">Rascunho</label>
+                    <textarea class="form-control" id="rascunho" rows="4"
+                        placeholder="Adicione notas, dicas ou rascunhos relacionados à prova"></textarea>
+                </div>
+                <button class="btn btn-primary w-100 mt-3" onclick="adicionarProva()">
+                    <i class="fas fa-plus-circle"></i> Adicionar Prova
+                </button>
+            </div>
+
+            <h3 class="mt-5">Lista de Provas</h3>
+            <ul id="listaProvas" class="list-group mt-2 animate__animated animate__fadeInUp"></ul>
+        </div>
+    </section>
+
+
+    <!-- Calendário -->
+    <section class="dm-J oculto container-fluid" id="matheus_home_calendario">
+        <div class="calendar">
+            <h4 class="text-center text-primary animate__animated animate__fadeIn">Maio 2025</h4>
+
+            <table class="table table-bordered table-hover animate__animated animate__fadeInUp">
+                <thead>
+                    <tr>
+                        <th>Seg</th>
+                        <th>Ter</th>
+                        <th>Qua</th>
+                        <th>Qui</th>
+                        <th>Sex</th>
+                        <th class="text-secondary">Sáb</th>
+                        <th class="domingo text-danger">Dom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td> <!-- Seg (27/04) -->
+                        <td></td> <!-- Ter (28/04) -->
+                        <td></td> <!-- Qua (29/04) -->
+                        <td data-dia="2025-05-01" class="animate__animated animate__zoomIn">1</td>
+                        <td data-dia="2025-05-02" class="animate__animated animate__zoomIn">2</td>
+                        <td data-dia="2025-05-03" class="text-secondary animate__animated animate__zoomIn">3</td>
+                        <td data-dia="2025-05-04" class="domingo text-danger animate__animated animate__zoomIn">4</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-05-05" class="animate__animated animate__zoomIn">5</td>
+                        <td data-dia="2025-05-06" class="animate__animated animate__zoomIn">6</td>
+                        <td data-dia="2025-05-07" class="animate__animated animate__zoomIn">7</td>
+                        <td data-dia="2025-05-08" class="animate__animated animate__zoomIn">8</td>
+                        <td data-dia="2025-05-09" class="animate__animated animate__zoomIn">9</td>
+                        <td data-dia="2025-05-10" class="text-secondary animate__animated animate__zoomIn">10</td>
+                        <td data-dia="2025-05-11" class="domingo text-danger animate__animated animate__zoomIn">11</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-05-12" class="animate__animated animate__zoomIn">12</td>
+                        <!-- Segunda-feira (Hoje) -->
+                        <td data-dia="2025-05-13" class="animate__animated animate__zoomIn">13</td>
+                        <td data-dia="2025-05-14" class="animate__animated animate__zoomIn">14</td>
+                        <td data-dia="2025-05-15" class="animate__animated animate__zoomIn">15</td>
+                        <td data-dia="2025-05-16" class="animate__animated animate__zoomIn">16</td>
+                        <td data-dia="2025-05-17" class="text-secondary animate__animated animate__zoomIn">17</td>
+                        <td data-dia="2025-05-18" class="domingo text-danger animate__animated animate__zoomIn">18</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-05-19" class="animate__animated animate__zoomIn">19</td>
+                        <td data-dia="2025-05-20" class="animate__animated animate__zoomIn">20</td>
+                        <td data-dia="2025-05-21" class="animate__animated animate__zoomIn">21</td>
+                        <td data-dia="2025-05-22" class="animate__animated animate__zoomIn">22</td>
+                        <td data-dia="2025-05-23" class="animate__animated animate__zoomIn">23</td>
+                        <td data-dia="2025-05-24" class="text-secondary animate__animated animate__zoomIn">24</td>
+                        <td data-dia="2025-05-25" class="domingo text-danger animate__animated animate__zoomIn">25</td>
+                    </tr>
+                    <tr>
+                        <td data-dia="2025-05-26" class="animate__animated animate__zoomIn">26</td>
+                        <td data-dia="2025-05-27" class="animate__animated animate__zoomIn">27</td>
+                        <td data-dia="2025-05-28" class="animate__animated animate__zoomIn">28</td>
+                        <td data-dia="2025-05-29" class="animate__animated animate__zoomIn">29</td>
+                        <td data-dia="2025-05-30" class="animate__animated animate__zoomIn">30</td>
+                        <td data-dia="2025-05-31" class="text-secondary animate__animated animate__zoomIn">31</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="container mt-3">
+                <div class="card-body">
+                    <h6 class="fw-bold text-secondary">Feriados:</h6>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary p-2 text-light">1</span> Dia do Trabalho
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary p-2 text-light">26</span> Corpus Christi
+                        </li>
+                    </ul>
+
+                    <h6 class="fw-bold text-primary">Provas:</h6>
+                    <ul class="list-group mb-3" id="lista-provas">
+                        <!-- Provas aparecerão aqui -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/scripts.js" defer></script>
+    <script src="assets/js/matheus.js"></script>
+</body>
+
+</html>
